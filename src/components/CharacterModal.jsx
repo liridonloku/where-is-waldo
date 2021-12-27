@@ -6,7 +6,18 @@ import { StyledCharacterModal } from "./styles/CharacterModal.styled";
 
 const CharacterModal = ({ coords }) => {
   return (
-    <StyledCharacterModal style={{ top: coords.yCoord, left: coords.xCoord }}>
+    <StyledCharacterModal
+      style={{
+        top:
+          coords.imgHeight - coords.yCoord > 170
+            ? coords.yCoord
+            : coords.yCoord - 170,
+        left:
+          coords.imgWidth - coords.xCoord > 170
+            ? coords.xCoord
+            : coords.xCoord - 170,
+      }}
+    >
       <div className="character">
         <img src={arthur} alt="arthur" />
         <p>Arthur Morgan</p>

@@ -11,7 +11,7 @@ const ImageComponent = () => {
   const handleImageClick = (e) => {
     let coordinates = getCoordinates(e);
     setcurrentCoords(coordinates);
-    setcharacterModal(true);
+    setcharacterModal(!characterModal);
   };
 
   const getCoordinates = (e) => {
@@ -29,10 +29,11 @@ const ImageComponent = () => {
     ) {
       console.log("Congrats! You found Arthur.");
     }
-    console.log(xCoord, yCoord, imgWidth, imgHeight);
     return {
       xCoord,
       yCoord,
+      imgWidth,
+      imgHeight,
       xInPercent,
       yInPercent,
     };
