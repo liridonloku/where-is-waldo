@@ -1,8 +1,19 @@
 import React from "react";
 import game from "../images/game.jpg";
 import { StyledImageContainer } from "./styles/ImageComponent.styled";
+import { useState } from "react";
+import CharacterModal from "./CharacterModal";
 
 const ImageComponent = () => {
+  const [currentCoords, setcurrentCoords] = useState({});
+  const [characterModal, setcharacterModal] = useState(false);
+
+  const handleImageClick = (e) => {
+    let coordinates = getCoordinates(e);
+    setcurrentCoords(coordinates);
+    setcharacterModal(true);
+  };
+
   const getCoordinates = (e) => {
     let xCoord = e.nativeEvent.offsetX;
     let yCoord = e.nativeEvent.offsetY;
@@ -19,11 +30,18 @@ const ImageComponent = () => {
       console.log("Congrats! You found Arthur.");
     }
     console.log(xCoord, yCoord, imgWidth, imgHeight);
+    return {
+      xCoord,
+      yCoord,
+      xInPercent,
+      yInPercent,
+    };
   };
 
   return (
     <StyledImageContainer>
-      <img src={game} alt="game" onClick={(e) => getCoordinates(e)} />
+      <img src={game} alt="game" onClick={(e) => handleImageClick(e)} />
+      {characterModal && <CharacterModal coords={currentCoords} />}
     </StyledImageContainer>
   );
 };
