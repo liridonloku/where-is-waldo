@@ -8,6 +8,7 @@ const CharacterModal = ({ coords }) => {
   return (
     <StyledCharacterModal
       style={{
+        //position the box according to click position, to prevent overflow
         top:
           coords.imgHeight - coords.yCoord > 170
             ? coords.yCoord

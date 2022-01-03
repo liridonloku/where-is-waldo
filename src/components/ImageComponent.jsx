@@ -8,9 +8,21 @@ const ImageComponent = () => {
   const characters = {
     arthur: {
       xMin: 0.212,
-      yMin: 0.3466,
       xMax: 0.2458,
+      yMin: 0.3466,
       yMax: 0.3763,
+    },
+    drake: {
+      xMin: 0.5959,
+      xMax: 0.6308,
+      yMin: 0.6777,
+      yMax: 0.7152,
+    },
+    kratos: {
+      xMin: 0.5886,
+      xMax: 0.6359,
+      yMin: 0.5413,
+      yMax: 0.5672,
     },
   };
   const [currentCoords, setcurrentCoords] = useState({});
@@ -22,6 +34,17 @@ const ImageComponent = () => {
     setcharacterModal(!characterModal);
   };
 
+  const checkMatch = (coordinates, character) => {
+    if (
+      coordinates.xInPercent >= characters[character].xMin &&
+      coordinates.xInPercent <= characters[character].xMax &&
+      coordinates.yInPercent >= characters[character].yMin &&
+      coordinates.yInPercent <= characters[character].yMax
+    ) {
+      console.log(`Congratulations! You found ${character}`);
+    }
+  };
+
   const getCoordinates = (e) => {
     let xCoord = e.nativeEvent.offsetX;
     let yCoord = e.nativeEvent.offsetY;
@@ -29,14 +52,6 @@ const ImageComponent = () => {
     let imgHeight = e.target.offsetHeight;
     let xInPercent = xCoord / imgWidth;
     let yInPercent = yCoord / imgHeight;
-    if (
-      xInPercent >= characters.arthur.xMin &&
-      xInPercent <= characters.arthur.xMax &&
-      yInPercent >= characters.arthur.yMin &&
-      yInPercent <= characters.arthur.yMax
-    ) {
-      console.log("Congrats! You found Arthur.");
-    }
     return {
       xCoord,
       yCoord,
