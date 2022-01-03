@@ -5,6 +5,14 @@ import { useState } from "react";
 import CharacterModal from "./CharacterModal";
 
 const ImageComponent = () => {
+  const characters = {
+    arthur: {
+      xMin: 0.212,
+      yMin: 0.3466,
+      xMax: 0.2458,
+      yMax: 0.3763,
+    },
+  };
   const [currentCoords, setcurrentCoords] = useState({});
   const [characterModal, setcharacterModal] = useState(false);
 
@@ -22,10 +30,10 @@ const ImageComponent = () => {
     let xInPercent = xCoord / imgWidth;
     let yInPercent = yCoord / imgHeight;
     if (
-      xInPercent >= 0.212 &&
-      xInPercent <= 0.2458 &&
-      yInPercent >= 0.3466 &&
-      yInPercent <= 0.3763
+      xInPercent >= characters.arthur.xMin &&
+      xInPercent <= characters.arthur.xMax &&
+      yInPercent >= characters.arthur.yMin &&
+      yInPercent <= characters.arthur.yMax
     ) {
       console.log("Congrats! You found Arthur.");
     }
