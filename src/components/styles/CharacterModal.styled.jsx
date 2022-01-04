@@ -2,18 +2,20 @@ import styled from "styled-components";
 
 export const StyledCharacterModal = styled.div`
   position: absolute;
-  background-color: darkslategray;
+  background-color: rgba(0, 0, 0, 0.87);
   color: white;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 3px black;
+  border-radius: 5px;
   padding: 2px;
 
   .character {
     display: flex;
-    padding-right: 10px;
+    align-items: center;
+    padding: 3px 10px 3px 0;
     cursor: pointer;
 
     &:hover {
-      background-color: black;
+      background-color: #20a4f3;
     }
   }
 
