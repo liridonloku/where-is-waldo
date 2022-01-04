@@ -29,9 +29,14 @@ const ImageComponent = () => {
   const [characterModal, setcharacterModal] = useState(false);
 
   const handleImageClick = (e) => {
-    let coordinates = getCoordinates(e);
-    setcurrentCoords(coordinates);
+    setcurrentCoords(getCoordinates(e));
     setcharacterModal(!characterModal);
+  };
+
+  const handleCharacterClick = (e) => {
+    setcharacterModal(false);
+    let character = e.target.getAttribute("character");
+    checkMatch(currentCoords, character);
   };
 
   const checkMatch = (coordinates, character) => {
@@ -42,6 +47,8 @@ const ImageComponent = () => {
       coordinates.yInPercent <= characters[character].yMax
     ) {
       console.log(`Congratulations! You found ${character}`);
+    } else {
+      console.log("Keep trying!");
     }
   };
 
@@ -65,7 +72,12 @@ const ImageComponent = () => {
   return (
     <StyledImageContainer>
       <img src={game} alt="game" onClick={(e) => handleImageClick(e)} />
-      {characterModal && <CharacterModal coords={currentCoords} />}
+      {characterModal && (
+        <CharacterModal
+          coords={currentCoords}
+          handleCharacterClick={handleCharacterClick}
+        />
+      )}
     </StyledImageContainer>
   );
 };

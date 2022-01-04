@@ -4,7 +4,7 @@ import drake from "../images/drake.png";
 import kratos from "../images/kratos.png";
 import { StyledCharacterModal } from "./styles/CharacterModal.styled";
 
-const CharacterModal = ({ coords }) => {
+const CharacterModal = ({ coords, handleCharacterClick }) => {
   return (
     <StyledCharacterModal
       style={{
@@ -19,17 +19,29 @@ const CharacterModal = ({ coords }) => {
             : coords.xCoord - 170,
       }}
     >
-      <div className="character">
-        <img src={arthur} alt="arthur" />
-        <p>Arthur Morgan</p>
+      <div
+        className="character"
+        character="arthur"
+        onClick={(e) => handleCharacterClick(e)}
+      >
+        <img src={arthur} alt="arthur" character="arthur" />
+        <p character="arthur">Arthur Morgan</p>
       </div>
-      <div className="character">
-        <img src={drake} alt="drake" />
-        <p>Nathan Drake</p>
+      <div
+        className="character"
+        character="drake"
+        onClick={(e) => handleCharacterClick(e)}
+      >
+        <img src={drake} alt="drake" character="drake" />
+        <p character="drake">Nathan Drake</p>
       </div>
-      <div className="character">
-        <img src={kratos} alt="kratos" />
-        <p>Kratos</p>
+      <div
+        className="character"
+        character="kratos"
+        onClick={(e) => handleCharacterClick(e)}
+      >
+        <img src={kratos} alt="kratos" character="kratos" />
+        <p character="kratos">Kratos</p>
       </div>
     </StyledCharacterModal>
   );
