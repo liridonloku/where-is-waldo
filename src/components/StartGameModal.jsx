@@ -8,7 +8,8 @@ import game from "../images/game.jpg";
 const StartGameModal = () => {
   return (
     <StyledStartGameModal>
-      <h2>Find these Characters!</h2>
+      <h1>Where's Waldo? PS4 Edition!</h1>
+      <h3>Find these Charactersin the shortest time possible.</h3>
       <div className="container">
         <div className="left">
           <img src={game} alt="game" />

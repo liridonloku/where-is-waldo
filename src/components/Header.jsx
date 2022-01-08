@@ -1,10 +1,11 @@
 import React from "react";
+import { StyledHeader } from "./styles/Header.styled";
 
 const Header = () => {
   return (
-    <div>
-      <h1>Header</h1>
-    </div>
+    <StyledHeader>
+      <h1>Where's Waldo? PS4 Edition</h1>
+    </StyledHeader>
   );
 };
 

@@ -12,6 +12,11 @@ export const StyledStartGameModal = styled.div`
   background-color: rgba(0, 0, 0, 0.8);
   color: #f6f7f8;
 
+  h1,
+  h3 {
+    text-align: center;
+  }
+
   .container {
     height: 400px;
     width: 400px;
@@ -63,6 +68,7 @@ export const StyledStartGameModal = styled.div`
 
   .character > .image-container > img {
     max-height: 100%;
+    max-width: 100%;
     object-fit: cover;
   }
 
@@ -87,5 +93,11 @@ export const StyledStartGameModal = styled.div`
     color: #f6f7f8;
     border-radius: 20px;
     cursor: pointer;
+  }
+
+  @media (max-width: 500px) {
+    .container {
+      width: 95%;
+    }
   }
 `;

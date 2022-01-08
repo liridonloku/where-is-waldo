@@ -5,6 +5,7 @@ import { useState } from "react";
 
 function App() {
   const [startGameModal, setmodal] = useState(true);
+
   const toggleModal = () => {
     setmodal(!startGameModal);
   };
