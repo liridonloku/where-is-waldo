@@ -4,7 +4,7 @@ import { StyledImageContainer } from "./styles/ImageComponent.styled";
 import { useState } from "react";
 import CharacterModal from "./CharacterModal";
 
-const ImageComponent = () => {
+const ImageComponent = ({ findCharacter }) => {
   const characters = {
     arthur: {
       xMin: 0.212,
@@ -46,6 +46,7 @@ const ImageComponent = () => {
       coordinates.yInPercent >= characters[character].yMin &&
       coordinates.yInPercent <= characters[character].yMax
     ) {
+      findCharacter(character);
       console.log(`Congratulations! You found ${character}`);
     } else {
       console.log("Keep trying!");

@@ -5,7 +5,7 @@ import drake from "../images/drake.png";
 import kratos from "../images/kratos.png";
 import game from "../images/game.jpg";
 
-const StartGameModal = () => {
+const StartGameModal = ({ startGame }) => {
   return (
     <StyledStartGameModal>
       <h1>Where's Waldo? PS4 Edition!</h1>
@@ -34,7 +34,7 @@ const StartGameModal = () => {
             <p>Kratos</p>
           </div>
           <div className="start">
-            <button>Start</button>
+            <button onClick={startGame}>Start</button>
           </div>
         </div>
       </div>

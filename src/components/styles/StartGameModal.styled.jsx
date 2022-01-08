@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledStartGameModal = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100vh;
