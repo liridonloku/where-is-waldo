@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import ImageComponent from "./components/ImageComponent";
 import StartGameModal from "./components/StartGameModal";
 import { useState, useEffect } from "react";
+import alertify from "alertifyjs";
 
 function App() {
   const [startGameModal, setStartGameModal] = useState(true);
@@ -19,9 +20,40 @@ function App() {
           .toString()
           .padStart(2, "0")}:${(time % 60).toString().padStart(2, "0")}`
       );
+      alertify.prompt(
+        "Game Over",
+        `Your time: ${Math.floor(time / 3600)
+          .toString()
+          .padStart(2, "0")}:${Math.floor((time % 3600) / 60)
+          .toString()
+          .padStart(2, "0")}:${(time % 60)
+          .toString()
+          .padStart(2, "0")}! Type your name:`,
+        "Name",
+        function (evt, value) {
+          alertify.success(`Good job ${value}!`);
+        },
+        function () {
+          alertify.error("Canceled");
+        }
+      );
     }
     checkGameEnd();
   });
+
+  useEffect(() => {
+    let interval = null;
+    if (keepTime) {
+      interval = setInterval(() => {
+        setTime(time + 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [keepTime, time]);
 
   const checkGameEnd = () => {
     if (foundCharacters.length === 3) {
@@ -29,10 +61,6 @@ function App() {
       setgameEnd(true);
     }
   };
-
-  setTimeout(() => {
-    keepTime && setTime(time + 1);
-  }, 1000);
 
   const findCharacter = (character) => {
     if (!foundCharacters.includes(character)) {
