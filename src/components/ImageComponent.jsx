@@ -3,6 +3,7 @@ import game from "../images/game.jpg";
 import { StyledImageContainer } from "./styles/ImageComponent.styled";
 import { useState } from "react";
 import CharacterModal from "./CharacterModal";
+import alertify from "alertifyjs";
 
 const ImageComponent = ({ findCharacter, foundCharacters }) => {
   const characters = {
@@ -47,9 +48,9 @@ const ImageComponent = ({ findCharacter, foundCharacters }) => {
       coordinates.yInPercent <= characters[character].yMax
     ) {
       findCharacter(character);
-      console.log(`Congratulations! You found ${character}`);
+      alertify.success(`Congratulations! You found ${character}`);
     } else {
-      console.log("Keep trying!");
+      alertify.error(`That's not ${character}. Keep trying!`);
     }
   };
 
