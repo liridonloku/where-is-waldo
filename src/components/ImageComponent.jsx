@@ -4,7 +4,7 @@ import { StyledImageContainer } from "./styles/ImageComponent.styled";
 import { useState } from "react";
 import CharacterModal from "./CharacterModal";
 
-const ImageComponent = ({ findCharacter }) => {
+const ImageComponent = ({ findCharacter, foundCharacters }) => {
   const characters = {
     arthur: {
       xMin: 0.212,
@@ -77,6 +77,7 @@ const ImageComponent = ({ findCharacter }) => {
         <CharacterModal
           coords={currentCoords}
           handleCharacterClick={handleCharacterClick}
+          foundCharacters={foundCharacters}
         />
       )}
     </StyledImageContainer>

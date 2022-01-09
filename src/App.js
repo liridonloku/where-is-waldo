@@ -52,7 +52,10 @@ function App() {
   return (
     <>
       <Header time={time} />
-      <ImageComponent findCharacter={findCharacter} />
+      <ImageComponent
+        findCharacter={findCharacter}
+        foundCharacters={foundCharacters}
+      />
       {startGameModal && <StartGameModal startGame={startGame} />}
     </>
   );
