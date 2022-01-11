@@ -47,13 +47,12 @@ export const addEndTime = async (docRef) => {
   }
 };
 
-export const addNameScore = async (docRef, name) => {
-  const startTime = await (await getDoc(docRef)).data().startTime;
-  const endTime = await (await getDoc(docRef)).data().endTime;
+export const addNameAndScore = async (docRef, name) => {
+  const player = await (await getDoc(docRef)).data();
   try {
     await updateDoc(docRef, {
       name,
-      score: endTime.seconds - startTime.seconds,
+      score: player.endTime.seconds - player.startTime.seconds,
     });
   } catch (error) {
     console.log("Failed to update database: ", error);
