@@ -54,7 +54,7 @@ const addNameAndScore = async (id, name) => {
   try {
     await updateDoc(doc(db, "Leaderboard", id), {
       name,
-      score: player.endTime.seconds - player.startTime.seconds,
+      score: player.endTime.seconds - player.startTime.seconds - 1,
     });
   } catch (error) {
     console.log("Failed to update database: ", error);

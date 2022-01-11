@@ -2,7 +2,6 @@ import React from "react";
 import { StyledLeaderboard } from "./styles/Leaderboard.styled";
 
 const LeaderBoard = ({ leaderBoard, playAgain }) => {
-  console.log(leaderBoard);
   return (
     <StyledLeaderboard>
       <div className="container">
@@ -12,17 +11,20 @@ const LeaderBoard = ({ leaderBoard, playAgain }) => {
         <div className="table">
           {leaderBoard.map((item, i) => {
             return (
-              <p key={i}>
-                {i + 1}. {item.name} -{" "}
-                {Math.floor(item.score / 3600)
-                  .toString()
-                  .padStart(2, "0")}
-                :
-                {Math.floor((item.score % 3600) / 60)
-                  .toString()
-                  .padStart(2, "0")}
-                :{(item.score % 60).toString().padStart(2, "0")}
-              </p>
+              <div className="entry" key={i}>
+                <h3 className="position">{i + 1}.</h3>
+                <h3 className="player-name">{item.name}</h3>
+                <h3 className="time">
+                  {Math.floor(item.score / 3600)
+                    .toString()
+                    .padStart(2, "0")}
+                  :
+                  {Math.floor((item.score % 3600) / 60)
+                    .toString()
+                    .padStart(2, "0")}
+                  :{(item.score % 60).toString().padStart(2, "0")}
+                </h3>
+              </div>
             );
           })}
         </div>

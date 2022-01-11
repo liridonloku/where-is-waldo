@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledLeaderboard = styled.div`
+export const StyledNamePrompt = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
@@ -13,14 +13,10 @@ export const StyledLeaderboard = styled.div`
   color: #f6f7f8;
 
   .container {
-    padding: 10px 5px;
-    min-height: 300px;
-    max-height: 900px;
-    height: 90vh;
-    width: 600px;
+    padding: 30px 15px 10px 15px;
+    width: 400px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-radius: 10px;
     background-color: #011627;
     border: 2px solid black;
@@ -28,34 +24,16 @@ export const StyledLeaderboard = styled.div`
     color: #f6f7f8;
   }
 
-  .title {
+  input {
+    margin-bottom: 20px;
+    height: 30px;
+    font-size: 20px;
+  }
+
+  .button-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
-  }
-
-  .table {
-    width: 100%;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-  }
-
-  .entry {
-    width: 90%;
-    display: flex;
-    padding: 8px 0;
-  }
-
-  .entry > h3 {
-    padding: 0 5px;
-  }
-
-  .player-name {
-    flex-grow: 1;
   }
 
   button {
@@ -73,11 +51,9 @@ export const StyledLeaderboard = styled.div`
     background-color: #116ea6;
   }
 
-  @media (max-width: 610px) {
+  @media (max-width: 400px) {
     .container {
-      width: 95%;
-      min-height: 50%;
-      max-height: 90%;
+      width: 90%;
     }
   }
 `;

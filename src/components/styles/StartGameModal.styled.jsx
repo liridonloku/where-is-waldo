@@ -95,6 +95,10 @@ export const StyledStartGameModal = styled.div`
     cursor: pointer;
   }
 
+  .start > button:hover {
+    background-color: #116ea6;
+  }
+
   @media (max-width: 500px) {
     .container {
       width: 95%;

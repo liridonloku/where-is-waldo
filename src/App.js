@@ -2,8 +2,8 @@ import Header from "./components/Header";
 import ImageComponent from "./components/ImageComponent";
 import StartGameModal from "./components/StartGameModal";
 import LeaderBoard from "./components/LeaderBoard";
+import NamePrompt from "./components/NamePrompt";
 import { useState, useEffect } from "react";
-import alertify from "alertifyjs";
 import {
   getLeaderboard,
   addNewEntry,
@@ -16,46 +16,29 @@ function App() {
   const [time, setTime] = useState(0);
   const [keepTime, setKeepTime] = useState(false);
   const [foundCharacters, setfoundCharacters] = useState([]);
-  const [gameEnd, setgameEnd] = useState(false);
   const [player, setplayer] = useState("");
+  const [displayNamePrompt, setdisplayNamePrompt] = useState(false);
   const [leaderBoard, setleaderBoard] = useState([]);
   const [displayLeaderboard, setdisplayLeaderboard] = useState(false);
 
   useEffect(() => {
-    if (gameEnd) {
-      alertify.prompt(
-        "Game Over",
-        `Your time: ${Math.floor(time / 3600)
-          .toString()
-          .padStart(2, "0")}:${Math.floor((time % 3600) / 60)
-          .toString()
-          .padStart(2, "0")}:${(time % 60)
-          .toString()
-          .padStart(2, "0")}! Type your name:`,
-        "Name",
-        function (evt, value) {
-          setgameEnd(false);
-          addToLeaderboard(player, value);
-          setdisplayLeaderboard(true);
-          alertify.success(`Good job ${value}!`);
-        },
-        function () {
-          alertify.error("Canceled");
-        }
-      );
-    }
     checkGameEnd();
   });
 
   const playAgain = () => {
+    setfoundCharacters([]);
+    setplayer("");
     setdisplayLeaderboard(false);
+    setdisplayNamePrompt(false);
     setStartGameModal(true);
   };
 
   const addToLeaderboard = async (player, name) => {
     await addNameAndScore(player, name);
     const leaderBoard = await getLeaderboard();
+    setdisplayNamePrompt(false);
     setleaderBoard(leaderBoard);
+    setdisplayLeaderboard(true);
   };
 
   useEffect(() => {
@@ -75,8 +58,8 @@ function App() {
   const checkGameEnd = async () => {
     if (foundCharacters.length === 3) {
       setKeepTime(false);
-      setgameEnd(true);
       await addEndTime(player);
+      setdisplayNamePrompt(true);
     }
   };
 
@@ -105,6 +88,9 @@ function App() {
         foundCharacters={foundCharacters}
       />
       {startGameModal && <StartGameModal startGame={startGame} />}
+      {displayNamePrompt && (
+        <NamePrompt addToLeaderboard={addToLeaderboard} player={player} />
+      )}
       {displayLeaderboard && (
         <LeaderBoard leaderBoard={leaderBoard} playAgain={playAgain} />
       )}
