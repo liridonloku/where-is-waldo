@@ -13,13 +13,6 @@ function App() {
 
   useEffect(() => {
     if (gameEnd) {
-      console.log(
-        `Game over! Your time: ${Math.floor(time / 3600)
-          .toString()
-          .padStart(2, "0")}:${Math.floor((time % 3600) / 60)
-          .toString()
-          .padStart(2, "0")}:${(time % 60).toString().padStart(2, "0")}`
-      );
       alertify.prompt(
         "Game Over",
         `Your time: ${Math.floor(time / 3600)
