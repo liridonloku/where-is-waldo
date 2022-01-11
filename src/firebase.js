@@ -11,6 +11,7 @@ import {
   getDoc,
   orderBy,
   query,
+  doc,
 } from "firebase/firestore";
 // Firebase configuration
 const firebaseConfig = {
@@ -26,20 +27,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const addNewEntry = async () => {
+const addNewEntry = async () => {
   try {
     const docRef = await addDoc(collection(db, "Leaderboard"), {
       startTime: Timestamp.now(),
     });
-    return docRef;
+    console.log(docRef.id);
+    let id = docRef.id;
+    return id;
   } catch (error) {
     console.log("Failed to add database entry: ", error);
   }
 };
 
-export const addEndTime = async (docRef) => {
+const addEndTime = async (id) => {
   try {
-    await updateDoc(docRef, {
+    console.log(id);
+    await updateDoc(doc(db, "Leaderboard", id), {
       endTime: Timestamp.now(),
     });
   } catch (error) {
@@ -47,10 +51,10 @@ export const addEndTime = async (docRef) => {
   }
 };
 
-export const addNameAndScore = async (docRef, name) => {
-  const player = await (await getDoc(docRef)).data();
+const addNameAndScore = async (id, name) => {
+  const player = await (await getDoc(doc(db, "Leaderboard", id))).data();
   try {
-    await updateDoc(docRef, {
+    await updateDoc(doc(db, "Leaderboard", id), {
       name,
       score: player.endTime.seconds - player.startTime.seconds,
     });
@@ -59,7 +63,7 @@ export const addNameAndScore = async (docRef, name) => {
   }
 };
 
-export const getLeaderboard = async () => {
+const getLeaderboard = async () => {
   try {
     const leaderBoard = [];
     const querySnapshot = await getDocs(
@@ -73,3 +77,5 @@ export const getLeaderboard = async () => {
     console.log("Failed to load Leaderboard: ", error);
   }
 };
+
+export { getLeaderboard, addNewEntry, addNameAndScore, addEndTime };

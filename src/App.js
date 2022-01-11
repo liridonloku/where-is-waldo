@@ -3,6 +3,12 @@ import ImageComponent from "./components/ImageComponent";
 import StartGameModal from "./components/StartGameModal";
 import { useState, useEffect } from "react";
 import alertify from "alertifyjs";
+import {
+  getLeaderboard,
+  addNewEntry,
+  addNameAndScore,
+  addEndTime,
+} from "./firebase";
 
 function App() {
   const [startGameModal, setStartGameModal] = useState(true);
@@ -10,6 +16,9 @@ function App() {
   const [keepTime, setKeepTime] = useState(false);
   const [foundCharacters, setfoundCharacters] = useState([]);
   const [gameEnd, setgameEnd] = useState(false);
+  const [player, setplayer] = useState("");
+  const [leaderBoard, setleaderBoard] = useState([]);
+  const [displayLeaderboard, setdisplayLeaderboard] = useState(false);
 
   useEffect(() => {
     if (gameEnd) {
@@ -24,6 +33,7 @@ function App() {
           .padStart(2, "0")}! Type your name:`,
         "Name",
         function (evt, value) {
+          addToLeaderboard(player, value);
           alertify.success(`Good job ${value}!`);
         },
         function () {
@@ -33,6 +43,12 @@ function App() {
     }
     checkGameEnd();
   });
+
+  const addToLeaderboard = async (player, name) => {
+    await addNameAndScore(player, name);
+    const leaderBoard = await getLeaderboard();
+    setleaderBoard(leaderBoard);
+  };
 
   useEffect(() => {
     let interval = null;
@@ -48,10 +64,11 @@ function App() {
     };
   }, [keepTime, time]);
 
-  const checkGameEnd = () => {
+  const checkGameEnd = async () => {
     if (foundCharacters.length === 3) {
       setKeepTime(false);
       setgameEnd(true);
+      await addEndTime(player);
     }
   };
 
@@ -61,13 +78,15 @@ function App() {
     }
   };
 
-  const startGame = () => {
+  const startGame = async () => {
     //remove modal
     setStartGameModal(false);
     //reset timer
     setTime(0);
     //start timer
     setKeepTime(true);
+    //Add database entry and save docRef
+    setplayer(await addNewEntry());
   };
 
   return (
