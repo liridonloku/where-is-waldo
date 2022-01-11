@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import ImageComponent from "./components/ImageComponent";
 import StartGameModal from "./components/StartGameModal";
+import LeaderBoard from "./components/LeaderBoard";
 import { useState, useEffect } from "react";
 import alertify from "alertifyjs";
 import {
@@ -33,7 +34,9 @@ function App() {
           .padStart(2, "0")}! Type your name:`,
         "Name",
         function (evt, value) {
+          setgameEnd(false);
           addToLeaderboard(player, value);
+          setdisplayLeaderboard(true);
           alertify.success(`Good job ${value}!`);
         },
         function () {
@@ -43,6 +46,11 @@ function App() {
     }
     checkGameEnd();
   });
+
+  const playAgain = () => {
+    setdisplayLeaderboard(false);
+    setStartGameModal(true);
+  };
 
   const addToLeaderboard = async (player, name) => {
     await addNameAndScore(player, name);
@@ -97,6 +105,9 @@ function App() {
         foundCharacters={foundCharacters}
       />
       {startGameModal && <StartGameModal startGame={startGame} />}
+      {displayLeaderboard && (
+        <LeaderBoard leaderBoard={leaderBoard} playAgain={playAgain} />
+      )}
     </>
   );
 }

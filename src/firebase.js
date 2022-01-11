@@ -32,7 +32,6 @@ const addNewEntry = async () => {
     const docRef = await addDoc(collection(db, "Leaderboard"), {
       startTime: Timestamp.now(),
     });
-    console.log(docRef.id);
     let id = docRef.id;
     return id;
   } catch (error) {
@@ -42,7 +41,6 @@ const addNewEntry = async () => {
 
 const addEndTime = async (id) => {
   try {
-    console.log(id);
     await updateDoc(doc(db, "Leaderboard", id), {
       endTime: Timestamp.now(),
     });
