@@ -9,6 +9,8 @@ import {
   Timestamp,
   updateDoc,
   getDoc,
+  orderBy,
+  query,
 } from "firebase/firestore";
 // Firebase configuration
 const firebaseConfig = {
@@ -55,5 +57,20 @@ export const addNameScore = async (docRef, name) => {
     });
   } catch (error) {
     console.log("Failed to update database: ", error);
+  }
+};
+
+export const getLeaderboard = async () => {
+  try {
+    const leaderBoard = [];
+    const querySnapshot = await getDocs(
+      query(collection(db, "Leaderboard"), orderBy("score", "asc"))
+    );
+    querySnapshot.forEach((doc) => {
+      leaderBoard.push(doc.data());
+    });
+    return leaderBoard;
+  } catch (error) {
+    console.log("Failed to load Leaderboard: ", error);
   }
 };
