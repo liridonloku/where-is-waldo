@@ -1,7 +1,15 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  Timestamp,
+  updateDoc,
+  getDoc,
+} from "firebase/firestore";
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAUEftkUFFWmc-lMbYhV6MRNm0nEdBEhoc",
@@ -16,12 +24,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/*const addNewEntry = async () => {
+export const addNewEntry = async () => {
   try {
-    await addDoc(collection(db, "Leaderboard"), {
-      startTime: 0,
+    const docRef = await addDoc(collection(db, "Leaderboard"), {
+      startTime: Timestamp.now(),
     });
+    return docRef;
   } catch (error) {
     console.log("Failed to add database entry: ", error);
   }
-};*/
+};
+
+export const addEndTime = async (docRef) => {
+  try {
+    await updateDoc(docRef, {
+      endTime: Timestamp.now(),
+    });
+  } catch (error) {
+    console.log("Failed to update database", error);
+  }
+};
+
+export const addNameScore = async (docRef, name) => {
+  const startTime = await (await getDoc(docRef)).data().startTime;
+  const endTime = await (await getDoc(docRef)).data().endTime;
+  try {
+    await updateDoc(docRef, {
+      name,
+      score: endTime.seconds - startTime.seconds,
+    });
+  } catch (error) {
+    console.log("Failed to update database: ", error);
+  }
+};
