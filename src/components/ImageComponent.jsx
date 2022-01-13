@@ -72,6 +72,12 @@ const ImageComponent = ({ findCharacter, foundCharacters }) => {
           foundCharacters={foundCharacters}
         />
       )}
+      <div className="art-by">
+        <p>
+          Art by{" "}
+          <a href="https://www.artstation.com/artwork/oOVVlJ">Pierre Roussel</a>{" "}
+        </p>
+      </div>
     </StyledImageContainer>
   );
 };

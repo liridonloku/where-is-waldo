@@ -23,6 +23,7 @@ export const StyledCharacterModal = styled.div`
     width: 50px;
     height: 50px;
     object-fit: contain;
+    cursor: pointer;
   }
 
   .character > p {
