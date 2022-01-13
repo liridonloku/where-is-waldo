@@ -76,4 +76,21 @@ const getLeaderboard = async () => {
   }
 };
 
-export { getLeaderboard, addNewEntry, addNameAndScore, addEndTime };
+const getCharacters = async () => {
+  try {
+    const characters = await (
+      await getDoc(doc(db, "coordinates", "characters"))
+    ).data();
+    return characters;
+  } catch (error) {
+    console.log("Failed to load Coordinates: ", error);
+  }
+};
+
+export {
+  getCharacters,
+  getLeaderboard,
+  addNewEntry,
+  addNameAndScore,
+  addEndTime,
+};

@@ -1,31 +1,13 @@
 import React from "react";
 import game from "../images/game.jpg";
 import { StyledImageContainer } from "./styles/ImageComponent.styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCharacters } from "../firebase";
 import CharacterModal from "./CharacterModal";
 import alertify from "alertifyjs";
 
 const ImageComponent = ({ findCharacter, foundCharacters }) => {
-  const characters = {
-    arthur: {
-      xMin: 0.212,
-      xMax: 0.2458,
-      yMin: 0.3466,
-      yMax: 0.3763,
-    },
-    drake: {
-      xMin: 0.5959,
-      xMax: 0.6308,
-      yMin: 0.6777,
-      yMax: 0.7152,
-    },
-    kratos: {
-      xMin: 0.5886,
-      xMax: 0.6359,
-      yMin: 0.5413,
-      yMax: 0.5672,
-    },
-  };
+  const [characters, setCharacters] = useState({});
   const [currentCoords, setcurrentCoords] = useState({});
   const [characterModal, setcharacterModal] = useState(false);
 
@@ -70,6 +52,16 @@ const ImageComponent = ({ findCharacter, foundCharacters }) => {
       yInPercent,
     };
   };
+
+  useEffect(() => {
+    //Get character coordinates
+    const getCharacterCoordinates = async () => {
+      const characters = await getCharacters();
+      console.log(characters);
+      setCharacters(characters);
+    };
+    getCharacterCoordinates();
+  }, []);
 
   return (
     <StyledImageContainer>

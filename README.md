@@ -4,4 +4,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Acknowledgements
 
-Used alertifyJS for prompts and notifications
+[Pierre Roussel](https://www.artstation.com/artwork/oOVVlJ) For the art.
+AlertifyJS for notifications.
