@@ -26,17 +26,16 @@ function App() {
   });
 
   const playAgain = () => {
-    setfoundCharacters([]);
     setplayer("");
     setdisplayLeaderboard(false);
-    setdisplayNamePrompt(false);
     setStartGameModal(true);
   };
 
   const addToLeaderboard = async (player, name) => {
     await addNameAndScore(player, name);
-    const leaderBoard = await getLeaderboard();
+    setfoundCharacters([]);
     setdisplayNamePrompt(false);
+    const leaderBoard = await getLeaderboard();
     setleaderBoard(leaderBoard);
     setdisplayLeaderboard(true);
   };

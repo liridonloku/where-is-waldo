@@ -57,7 +57,6 @@ const ImageComponent = ({ findCharacter, foundCharacters }) => {
     //Get character coordinates
     const getCharacterCoordinates = async () => {
       const characters = await getCharacters();
-      console.log(characters);
       setCharacters(characters);
     };
     getCharacterCoordinates();

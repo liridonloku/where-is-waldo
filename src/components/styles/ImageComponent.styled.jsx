@@ -6,5 +6,6 @@ export const StyledImageContainer = styled.div`
   & img {
     display: block;
     width: 100%;
+    cursor: crosshair;
   }
 `;
