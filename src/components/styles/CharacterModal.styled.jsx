@@ -22,6 +22,8 @@ export const StyledCharacterModal = styled.div`
   .character > img {
     width: 50px;
     height: 50px;
+    min-width: auto;
+    min-height: auto;
     object-fit: contain;
     cursor: pointer;
   }
