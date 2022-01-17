@@ -14,4 +14,5 @@ The app is built using:
 ## Acknowledgements
 
 [Pierre Roussel](https://www.artstation.com/artwork/oOVVlJ) - For the art.
+
 [AlertifyJS](https://alertifyjs.com/)
