@@ -16,6 +16,6 @@ code {
     monospace;
 }
 
-.root {
-  position: relative;
+#root {
+  min-height: 100vh;
 }
