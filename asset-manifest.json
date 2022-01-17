@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/where-is-waldo/static/css/main.e15cb594.css",
-    "main.js": "/where-is-waldo/static/js/main.18bbb634.js",
+    "main.css": "/where-is-waldo/static/css/main.c8c4c79e.css",
+    "main.js": "/where-is-waldo/static/js/main.bfc0935f.js",
     "static/media/kratos.png": "/where-is-waldo/static/media/kratos.afb0c5f5efda418c5766.png",
     "static/media/drake.png": "/where-is-waldo/static/media/drake.f7962f3dd51b25bc3a78.png",
     "static/media/game.jpg": "/where-is-waldo/static/media/game.6bc8c564020184b4ab46.jpg",
     "static/media/arthur.png": "/where-is-waldo/static/media/arthur.ab8a50356841af764c0d.png",
     "index.html": "/where-is-waldo/index.html",
-    "main.e15cb594.css.map": "/where-is-waldo/static/css/main.e15cb594.css.map",
-    "main.18bbb634.js.map": "/where-is-waldo/static/js/main.18bbb634.js.map"
+    "main.c8c4c79e.css.map": "/where-is-waldo/static/css/main.c8c4c79e.css.map",
+    "main.bfc0935f.js.map": "/where-is-waldo/static/js/main.bfc0935f.js.map"
   },
   "entrypoints": [
-    "static/css/main.e15cb594.css",
-    "static/js/main.18bbb634.js"
+    "static/css/main.c8c4c79e.css",
+    "static/js/main.bfc0935f.js"
   ]
 }
